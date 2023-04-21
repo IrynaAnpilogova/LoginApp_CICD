@@ -2,10 +2,38 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello') {
+        stage('Build Docker images') {
             steps {
-                echo 'Hello worlds!'
+                sh '''cd LoginApp &&
+                docker build -t app-image . &&
+                cd ../LoginAppTests &&
+                docker build -t tests-image . &&
+                docker pull selenium/standalone-chrome
+                '''
             }
+        }
+        stage('Start containers') {
+            steps {
+                sh 'docker stop my-app my-selenium || true'
+                sh '''
+                docker run -d --rm -p 8081:80 --name my-app app-image &&
+                docker run -d --rm -p 4444:4444 --link my-app:my-app --name my-selenium selenium/standalone-chrome
+                '''
+            }
+        }
+        stage('Run tests') {
+            steps {
+                sh '''
+                docker run --link my-selenium:my-selenium -v ${PWD}/LoginAppTests:/data tests-image mvn clean test
+                '''
+                // Archive test report
+                junit '**/target/surefire-reports/TEST-*.xml'
+            }
+        }
+    }
+    post {
+        cleanup {
+            sh 'docker stop my-app my-selenium'
         }
     }
 }
