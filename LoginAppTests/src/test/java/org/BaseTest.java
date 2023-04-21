@@ -35,8 +35,8 @@ public class BaseTest {
         options.addArguments("--headless");
 
        // Create a new instance of the RemoteWebDriver
-//        driver = new RemoteWebDriver(new URL("http://my-selenium:4444/wd/hub"), options);
-        driver = new ChromeDriver(options);
+        driver = new RemoteWebDriver(new URL("http://my-selenium:4444/wd/hub"), options);
+//        driver = new ChromeDriver(options);
 
 
     }

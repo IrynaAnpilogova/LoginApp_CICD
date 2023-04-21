@@ -11,8 +11,8 @@ public class LoginTests extends BaseTest {
 
     @BeforeEach
     void setUp() {
-        driver.get("file:///Users/anpilog/Desktop/Irina/Projects/LoginApp/LoginApp/index.html");
-//        driver.get("http://my-app:80");
+//        driver.get("file:///Users/anpilog/Desktop/Irina/Projects/LoginApp/LoginApp/index.html");
+        driver.get("http://my-app:80");
     }
 
     //

@@ -118,6 +118,25 @@
                     <artifactId>maven-project-info-reports-plugin</artifactId>
                     <version>3.0.0</version>
                 </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.11.0</version>
+                    <configuration>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                        <testFailureIgnore>true</testFailureIgnore>
+                        <argLine>-Dfile.encoding=UTF-8</argLine>
+                        <reportsDirectory>target</reportsDirectory>
+                        <testFailureIgnore>true</testFailureIgnore>
+                        <forkCount>0</forkCount>
+                        <reuseForks>false</reuseForks>
+                        <parallel>none</parallel>
+                        <includes>
+                            <include>**/*Test.java</include>
+                        </includes>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
