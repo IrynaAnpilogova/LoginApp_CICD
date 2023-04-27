@@ -1,20 +1,24 @@
 body {
     text-align: center;
-  }
-  
-  
-  form, #message {
+}
+
+form,
+#message {
     display: inline-block;
     text-align: left;
-  }
-  
-  form {
+}
+
+form {
     margin-top: 50px;
-  }
-  
-  #message {
+}
+
+button[type="submit"] {
+    background-color: green;
+}
+
+#message {
     margin-top: 50px;
     font-size: 24px;
     font-weight: bold;
     color: green;
-  }
+}
