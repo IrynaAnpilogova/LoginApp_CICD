@@ -8,7 +8,7 @@ pipeline {
                 docker build -t app-image . &&
                 cd ../LoginAppTests &&
                 docker build -t tests-image . &&
-                docker pull selenium/standalone-chrome
+                docker pull seleniarm/standalone-chromium
                 '''
             }
         }
@@ -17,7 +17,7 @@ pipeline {
                 sh 'docker stop my-app my-selenium || true'
                 sh '''
                 docker run -d --rm -p 8081:80 --name my-app app-image &&
-                docker run -d --rm -p 4444:4444 --link my-app:my-app --name my-selenium selenium/standalone-chrome
+                docker run -d --rm -p 4444:4444 --link my-app:my-app --name my-selenium seleniarm/standalone-chromium
                 '''
             }
         }
